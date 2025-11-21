@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => '17Fitness',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -32,6 +32,14 @@ return [
 
     'use_ico_only' => false,
     'use_full_favicon' => false,
+
+    'plugins' => [
+    'Datatables' => ['active' => false],
+    'Select2' => ['active' => false],
+    'Chartjs' => ['active' => false],
+    'Sweetalert2' => ['active' => false],
+    'Pace' => ['active' => false],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -63,8 +71,8 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>17</b>FITNESS',
+    'logo_img' => 'vendor/adminlte/dist/img/LOGO.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
