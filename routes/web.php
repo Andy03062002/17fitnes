@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RutinaIAVisitanteController;
+use App\Http\Controllers\PerfilUsuarioController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +20,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/entrenar-hoy', [App\Http\Controllers\EntrenarHoyController::class, 'index'])->name('entrenar.index');
     Route::post('/entrenar-hoy', [App\Http\Controllers\EntrenarHoyController::class, 'filtrar'])->name('entrenar.filtrar');
 });
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/perfil', [PerfilUsuarioController::class, 'index'])->name('perfil.index');
+    Route::post('/perfil', [PerfilUsuarioController::class, 'store'])->name('perfil.store');
+
+});
+
 
 // Formulario de rutina IA
 Route::get('/rutina-ia', [RutinaIAVisitanteController::class, 'index'])

@@ -46,7 +46,7 @@
             <div class="icon">
                 <i class="fas fa-user"></i>
             </div>
-            <a href="#" class="small-box-footer">Editar perfil <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('perfil.index') }}" class="small-box-footer">Editar perfil <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <div class="col-lg-4 col-6">
@@ -60,6 +60,21 @@
             </div>
             <a href="{{ route('entrenar.index') }}" class="small-box-footer">
                 Empezar <i class="fas fa-arrow-circle-right"></i>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg color-primary">
+            <div class="inner">
+                <h3>Rutina Visitante</h3>
+                <p>Genera una rutina corta de prueba</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-dumbbell"></i>
+            </div>
+            <a href="{{ route('rutinaia.formulario') }}" class="small-box-footer">
+                Ir al módulo <i class="fas fa-arrow-circle-right"></i>
             </a>
 
         </div>
