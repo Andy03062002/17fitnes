@@ -17,7 +17,7 @@
             <div class="icon">
                 <i class="fas fa-dumbbell"></i>
             </div>
-            <a href="{{ route('rutinaia.formulario') }}" class="small-box-footer">
+            <a href="{{ route('rutinaia.generar') }}" class="small-box-footer">
                 Ir al módulo <i class="fas fa-arrow-circle-right"></i>
             </a>
 
