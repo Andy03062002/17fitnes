@@ -31,17 +31,9 @@ return [
     */
 
     'use_ico_only' => false,
-    'use_full_favicon' => false,
+'use_full_favicon' => false,
 
-    'plugins' => [
-    'Datatables' => ['active' => false],
-    'Select2' => ['active' => false],
-    'Chartjs' => ['active' => false],
-    'Sweetalert2' => ['active' => false],
-    'Pace' => ['active' => false],
-],
-
-    /*
+/*
     |--------------------------------------------------------------------------
     | Google Fonts
     |--------------------------------------------------------------------------
@@ -198,7 +190,7 @@ return [
     |
     */
 
-    'classes_body' => '',
+    'classes_body' => 'sidebar-collapse',
     'classes_brand' => '',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
