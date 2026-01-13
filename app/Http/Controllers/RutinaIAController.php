@@ -10,10 +10,10 @@ use App\Models\PerfilUsuario;
 use Parsedown;
 
 class RutinaIAController extends Controller
-{ 
+{
     public function index()
     {
-        return view('rutinaia.index'); // vista dashboard
+        return view('rutina.index'); // vista dashboard
     }
     public function generar()
     {
@@ -45,7 +45,7 @@ class RutinaIAController extends Controller
             'fecha_generacion' => now(),
         ]);
 
-        return redirect()->route('rutinaia.ver', $rutina->id);
+        return redirect()->route('rutina.ver', $rutina->id);
     }
 
     private function crearPromptDesdePerfil($p)
@@ -90,7 +90,58 @@ class RutinaIAController extends Controller
 
         $html = (new Parsedown())->text($texto);
 
-        return view('rutinaia.ver', compact('rutina', 'html'));
+        return view('rutina.ver', [
+            'rutina' => $rutina,
+            'htmlRutina' => $html
+        ]);
     }
 
+    private function extractTextFromAnthropicResponse($respuesta)
+    {
+        // Respuesta puede ser array con 'success' y 'data' o un objeto. Trabajamos robustamente.
+        if (is_array($respuesta) && !empty($respuesta['success']) && !empty($respuesta['data'])) {
+            $data = $respuesta['data'];
+
+            // En muchos retornos de Anthropic: data.content[0].text
+            if (!empty($data['content'][0]['text'])) {
+                return $data['content'][0]['text'];
+            }
+
+            // Si estructura distinta, intenta otros campos
+            if (!empty($data['outputs'][0]['content'][0]['text'])) {
+                return $data['outputs'][0]['content'][0]['text'];
+            }
+
+            // Si viene raw como 'text'
+            if (!empty($data['text'])) {
+                return $data['text'];
+            }
+
+            // fallback: devolver json pretty
+            return json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+
+        // Si viene como string
+        if (is_string($respuesta)) {
+            return $respuesta;
+        }
+
+        // si viene un objeto con ->data etc.
+        if (is_object($respuesta)) {
+            // intenta convertir a array
+            $arr = json_decode(json_encode($respuesta), true);
+            return $this->extractTextFromAnthropicResponse(['success' => true, 'data' => $arr]);
+        }
+
+        return 'No se pudo extraer contenido de la respuesta de la IA.';
+    }
+
+    public function historial()
+    {
+        $rutinas = Rutina::where('user_id', auth()->id())
+            ->orderBy('fecha_generacion', 'desc')
+            ->get();
+
+        return view('rutina.historial', compact('rutinas'));
+    }
 }

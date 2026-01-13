@@ -32,16 +32,19 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/rutina-ia', [RutinaIAController::class, 'index'])
-        ->name('rutinaia.index');
+    Route::get('/rutina', fn() => view('rutina.index'))
+        ->name('rutina.index');
 
-    Route::post('/rutina-ia/generar', [RutinaIAController::class, 'generar'])
-        ->name('rutinaia.generar');
+    Route::post('/rutina/generar', [RutinaIAController::class, 'generar'])
+        ->name('rutina.generar');
 
-    Route::get('/rutina-ia/{id}', [RutinaIAController::class, 'ver'])
-        ->name('rutinaia.ver');
+    Route::get('/rutina/{id}', [RutinaIAController::class, 'ver'])
+        ->name('rutina.ver');
 
+    Route::get('/rutina-historial', [RutinaIAController::class, 'historial'])
+        ->name('rutina.historial');
 });
+
 
 
 

@@ -17,7 +17,7 @@
             <div class="icon">
                 <i class="fas fa-dumbbell"></i>
             </div>
-            <a href="{{ route('rutinaia.generar') }}" class="small-box-footer">
+            <a href="{{ route('rutina.index') }}" class="small-box-footer">
                 Ir al módulo <i class="fas fa-arrow-circle-right"></i>
             </a>
 
@@ -33,7 +33,7 @@
             <div class="icon">
                 <i class="fas fa-chart-line"></i>
             </div>
-            <a href="#" class="small-box-footer">Ver historial <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('rutina.historial') }}" class="small-box-footer">Ver historial <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 

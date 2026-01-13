@@ -6,8 +6,8 @@
 <div class="d-flex justify-content-between align-items-center">
     <h1>Ejercicios recomendados</h1>
 
-    <a href="{{ route('dashboard') }}" class="btn btn-danger">
-        <i class="fas fa-arrow-left"></i> Regresar al Dashboard
+    <a href="{{ route('entrenar.index') }}" class="btn btn-danger">
+        <i class="fas fa-arrow-left"></i> Regresar
     </a>
 </div>
 @stop
