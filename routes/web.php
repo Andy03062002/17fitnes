@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\EjercicioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RutinaIAVisitanteController;
 use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\RutinaIAController;
+use App\Http\Controllers\UsuarioController;
 
 
 Route::get('/', function () {
@@ -12,7 +14,45 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');});
+
+    Route::get('/admin/usuarios', [UsuarioController::class, 'index'])
+        ->name('admin.usuarios.index');
+
+    Route::get('/admin/ejercicios', [EjercicioController::class, 'index'])
+        ->name('admin.ejercicios.index');
+
+    Route::delete('/admin/usuarios/{user}', [UsuarioController::class, 'destroy'])
+    ->name('admin.usuarios.destroy');
+
+    Route::get('/admin/ejercicios', [EjercicioController::class, 'index'])
+    ->name('admin.ejercicios.index');
+
+Route::get('/admin/ejercicios/create', [EjercicioController::class, 'create'])
+    ->name('admin.ejercicios.create');
+
+Route::post('/admin/ejercicios', [EjercicioController::class, 'store'])
+    ->name('admin.ejercicios.store');
+
+Route::get('/admin/ejercicios/{ejercicio}/edit', [EjercicioController::class, 'edit'])
+    ->name('admin.ejercicios.edit');
+
+Route::delete('/admin/ejercicios/{ejercicio}', [EjercicioController::class, 'destroy'])
+    ->name('admin.ejercicios.destroy');
+
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

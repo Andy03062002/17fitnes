@@ -214,15 +214,15 @@ return [
     |
     */
 
-    'sidebar_mini' => 'lg',
+    'sidebar_mini' => false,
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
-    'sidebar_collapse_remember_no_transition' => true,
-    'sidebar_scrollbar_theme' => 'os-theme-light',
-    'sidebar_scrollbar_auto_hide' => 'l',
-    'sidebar_nav_accordion' => true,
-    'sidebar_nav_animation_speed' => 300,
+    'sidebar_collapse_remember_no_transition' => false,
+    'sidebar_scrollbar_theme' => false,
+    'sidebar_scrollbar_auto_hide' => false,
+    'sidebar_nav_accordion' => false,
+    'sidebar_nav_animation_speed' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -237,12 +237,12 @@ return [
     */
 
     'right_sidebar' => false,
-    'right_sidebar_icon' => 'fas fa-cogs',
-    'right_sidebar_theme' => 'dark',
-    'right_sidebar_slide' => true,
-    'right_sidebar_push' => true,
-    'right_sidebar_scrollbar_theme' => 'os-theme-light',
-    'right_sidebar_scrollbar_auto_hide' => 'l',
+    'right_sidebar_icon' => false,
+    'right_sidebar_theme' => false,
+    'right_sidebar_slide' => false,
+    'right_sidebar_push' => false,
+    'right_sidebar_scrollbar_theme' => false,
+    'right_sidebar_scrollbar_auto_hide' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -257,7 +257,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',

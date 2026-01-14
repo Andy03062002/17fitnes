@@ -45,4 +45,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function administrador()
+    {
+        return $this->hasOne(\App\Models\Administrador::class);
+    }
+
+    public function esAdministrador(): bool
+    {
+        return $this->administrador !== null;
+    }
+
 }
