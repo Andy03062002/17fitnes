@@ -9,7 +9,7 @@ class EjercicioController extends Controller
 {
     public function index()
     {
-        $ejercicios = Ejercicio::paginate(10);
+        $ejercicios = Ejercicio::paginate(5);
 
         return view('admin.ejercicios.index', compact('ejercicios'));
     }
@@ -23,8 +23,8 @@ class EjercicioController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'grupo_muscular' => 'required|string|max:100',
-            'nivel' => 'required|string|max:50',
+            'grupo_muscular_objetivo' => 'required|string|max:100',
+            'nivel_dificultad' => 'required|string|max:50',
             'mecanica' => 'required|string|max:50',
             'video_corto' => 'nullable|url',
         ]);
@@ -35,6 +35,33 @@ class EjercicioController extends Controller
             ->route('admin.ejercicios.index')
             ->with('success', 'Ejercicio creado correctamente');
     }
+
+    public function edit(Ejercicio $ejercicio)
+{
+    return view('admin.ejercicios.edit', compact('ejercicio'));
+}
+    public function update(Request $request, Ejercicio $ejercicio)
+{
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'grupo_muscular_objetivo' => 'required|string|max:100',
+        'nivel_dificultad' => 'required|string|max:50',
+        'mecanica' => 'required|string|max:50',
+        'video_corto' => 'nullable|string',
+    ]);
+
+    $ejercicio->update($request->only([
+        'nombre',
+        'grupo_muscular_objetivo',
+        'nivel_dificultad',
+        'mecanica',
+        'video_corto',
+    ]));
+
+    return redirect()
+        ->route('admin.ejercicios.index')
+        ->with('success', 'Ejercicio actualizado correctamente.');
+}
 
     public function destroy(Ejercicio $ejercicio)
     {

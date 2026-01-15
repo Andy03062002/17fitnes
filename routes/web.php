@@ -22,9 +22,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');});
+        Route::get('/admin/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
+    });
 
     Route::get('/admin/usuarios', [UsuarioController::class, 'index'])
         ->name('admin.usuarios.index');
@@ -32,23 +33,42 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/ejercicios', [EjercicioController::class, 'index'])
         ->name('admin.ejercicios.index');
 
+    Route::get('/admin/usuarios/create', [UsuarioController::class, 'create'])
+        ->name('admin.usuarios.create');
+
+    Route::post('/admin/usuarios', [UsuarioController::class, 'store'])
+        ->name('admin.usuarios.store');
+
+    Route::get('/admin/usuarios/{user}/edit', [UsuarioController::class, 'edit'])
+        ->name('admin.usuarios.edit');
+
+    Route::put('/admin/usuarios/{user}', [UsuarioController::class, 'update'])
+        ->name('admin.usuarios.update');
+
     Route::delete('/admin/usuarios/{user}', [UsuarioController::class, 'destroy'])
-    ->name('admin.usuarios.destroy');
+        ->name('admin.usuarios.destroy');
 
-    Route::get('/admin/ejercicios', [EjercicioController::class, 'index'])
-    ->name('admin.ejercicios.index');
 
-Route::get('/admin/ejercicios/create', [EjercicioController::class, 'create'])
-    ->name('admin.ejercicios.create');
 
-Route::post('/admin/ejercicios', [EjercicioController::class, 'store'])
-    ->name('admin.ejercicios.store');
+    Route::delete('/admin/usuarios/{user}', [UsuarioController::class, 'destroy'])
+        ->name('admin.usuarios.destroy');
 
-Route::get('/admin/ejercicios/{ejercicio}/edit', [EjercicioController::class, 'edit'])
-    ->name('admin.ejercicios.edit');
 
-Route::delete('/admin/ejercicios/{ejercicio}', [EjercicioController::class, 'destroy'])
-    ->name('admin.ejercicios.destroy');
+
+    Route::get('/admin/ejercicios/create', [EjercicioController::class, 'create'])
+        ->name('admin.ejercicios.create');
+
+    Route::post('/admin/ejercicios', [EjercicioController::class, 'store'])
+        ->name('admin.ejercicios.store');
+
+    Route::get('/admin/ejercicios/{ejercicio}/edit', [EjercicioController::class, 'edit'])
+        ->name('admin.ejercicios.edit');
+
+    Route::put('/admin/ejercicios/{ejercicio}', [EjercicioController::class, 'update'])
+        ->name('admin.ejercicios.update');
+
+    Route::delete('/admin/ejercicios/{ejercicio}', [EjercicioController::class, 'destroy'])
+        ->name('admin.ejercicios.destroy');
 
 });
 

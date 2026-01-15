@@ -21,12 +21,12 @@
 
             <div class="form-group">
                 <label>Grupo muscular</label>
-                <input type="text" name="grupo_muscular" class="form-control" required>
+                <input type="text" name="grupo_muscular_objetivo" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label>Nivel</label>
-                <select name="nivel" class="form-control" required>
+                <select name="nivel_dificultad" class="form-control" required>
                     <option value="Principiante">Principiante</option>
                     <option value="Intermedio">Intermedio</option>
                     <option value="Avanzado">Avanzado</option>
