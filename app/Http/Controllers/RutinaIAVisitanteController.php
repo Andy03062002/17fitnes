@@ -9,7 +9,6 @@ use App\Services\AnthropicAPIClient;
 use Barryvdh\DomPDF\Facade\Pdf; // asegúrate de que el alias exista: use Barryvdh\DomPDF\Facade\Pdf;
 use App\Mail\RutinaPdfMail; // el mailable que crearemos
 use Illuminate\Support\Facades\Mail;
-
 use Parsedown;
 
 class RutinaIAVisitanteController extends Controller

@@ -6,7 +6,7 @@ use App\Http\Controllers\RutinaIAVisitanteController;
 use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\RutinaIAController;
 use App\Http\Controllers\UsuarioController;
-
+use App\Http\Controllers\PerfilController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -113,6 +113,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/rutina-ia', [RutinaIAVisitanteController::class, 'index'])
     ->name('rutinaia.formulario');
 
+Route::post('/rutina-ia', [RutinaIAVisitanteController::class, 'store'])
+    ->name('rutina.store');
+
 // Procesar formulario
 Route::post('/rutina-ia/procesar', [RutinaIAVisitanteController::class, 'procesar'])
     ->name('rutinaia.procesar');
@@ -124,3 +127,17 @@ Route::get('/rutina-ia/rutina', [RutinaIAVisitanteController::class, 'rutinaGene
 // Enviar PDF por correo
 Route::post('/rutina-ia/enviar', [RutinaIAVisitanteController::class, 'enviarPdfPorCorreo'])
     ->name('rutinaia.enviar');
+
+
+
+Route::post('/perfil/calendario/marcar', [PerfilUsuarioController::class, 'marcarDia'])
+    ->name('perfil.calendario.marcar');
+
+Route::post('/perfil/calendario/eliminar', [PerfilUsuarioController::class, 'eliminarDia'])
+    ->name('perfil.calendario.eliminar');
+
+Route::post('/entrenamiento/toggle', [PerfilUsuarioController::class, 'toggle'])
+    ->name('entrenamiento.toggle');
+
+Route::get('/entrenamiento/eventos', [PerfilUsuarioController::class, 'eventos'])
+    ->name('entrenamiento.eventos');

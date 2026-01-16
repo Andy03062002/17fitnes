@@ -54,11 +54,9 @@ class RutinaIAController extends Controller
             Eres un entrenador personal profesional.
 
             Crea una rutina personalizada con esta estructura:
-            - saludo personalizado
-            - análisis del perfil
-            - rutina semanal
+            - saludo personalizado(corto)
+            - rutina semanal(nomas de 6 ejercicios por dia)
             - recomendaciones de cuidado físico
-            - frase motivacional
 
             Perfil del usuario:
             Edad: {$p->edad}

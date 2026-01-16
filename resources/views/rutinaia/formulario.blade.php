@@ -1,137 +1,162 @@
 @extends('adminlte::page')
 
-@section('title', 'Rutina IA Visitante')
+@section('title', 'Generar Rutina IA - Casa Abierta')
 
 @section('content_header')
-<div class="d-flex justify-content-between align-items-center">
-    <h1>Generar Rutina IA (Visitante)</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Genera tu Rutina IA</h1>
 
-    <a href="{{ route('dashboard') }}" class="btn btn-danger">
+        <a href="{{ route('dashboard') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Regresar al Dashboard
         </a>
-</div>
+    </div>
 @stop
 
 @section('content')
 
-@if(session('error'))
-    <div class="alert alert-danger">{{ session('error') }}</div>
+@if(session('success'))
+    <div class="alert alert-success">
+        <strong>¡Listo!</strong> {{ session('success') }}
+    </div>
 @endif
 
-<div class="card">
+<div class="card shadow">
     <div class="card-header bg-primary text-white">
-        <h4>Ingresa tus datos</h4>
+        <h4 class="mb-0">Formulario para Casa Abierta</h4>
+        <small>Completa tus datos para recibir tu rutina personalizada por correo.</small>
     </div>
 
     <div class="card-body">
-
         <form action="{{ route('rutinaia.procesar') }}" method="POST">
+
             @csrf
 
-            <h5 class="text-primary">Datos personales</h5>
+            <!-- DATOS PERSONALES -->
+            <h5 class="text-primary mt-3"><i class="fas fa-user"></i> Datos Personales</h5>
             <div class="row">
-                <div class="col-md-6">
-                    <label>Nombre:</label>
+                <div class="col-md-4 mt-2">
+                    <label>Nombre *</label>
                     <input type="text" name="nombre" class="form-control" required>
                 </div>
-                <div class="col-md-6">
-                    <label>Apellido:</label>
+
+                <div class="col-md-4 mt-2">
+                    <label>Apellido *</label>
                     <input type="text" name="apellido" class="form-control" required>
                 </div>
-            </div>
 
-            <div class="row mt-2">
-                <div class="col-md-4">
-                    <label>Edad:</label>
+                <div class="col-md-4 mt-2">
+                    <label>Edad</label>
                     <input type="number" name="edad" class="form-control">
                 </div>
-                <div class="col-md-8">
-                    <label>Correo:</label>
+
+                <div class="col-md-6 mt-2">
+                    <label>Correo electrónico *</label>
                     <input type="email" name="correo" class="form-control" required>
                 </div>
+
+                <div class="col-md-6 mt-2">
+                    <label>Teléfono</label>
+                    <input type="text" name="telefono" class="form-control">
+                </div>
+
+                <div class="col-md-6 mt-2">
+                    <label>Ciudad</label>
+                    <input type="text" name="ciudad" class="form-control">
+                </div>
             </div>
 
-            <hr>
-
-            <h5 class="text-primary">Datos físicos</h5>
+            <!-- DATOS FÍSICOS -->
+            <h5 class="text-primary mt-4"><i class="fas fa-dumbbell"></i> Datos Físicos</h5>
             <div class="row">
-                <div class="col-md-4">
-                    <label>Peso (kg):</label>
-                    <input type="number" step="0.1" name="peso" class="form-control">
+                <div class="col-md-4 mt-2">
+                    <label>Peso (kg)</label>
+                    <input type="number" step="0.01" name="peso" class="form-control">
                 </div>
 
-                <div class="col-md-4">
-                    <label>Altura (cm):</label>
-                    <input type="number" step="0.1" name="altura" class="form-control">
+                <div class="col-md-4 mt-2">
+                    <label>Altura (cm)</label>
+                    <input type="number" step="0.01" name="altura" class="form-control">
                 </div>
 
-                <div class="col-md-4">
-                    <label>Nivel de actividad:</label>
+                <div class="col-md-4 mt-2">
+                    <label>Nivel de Actividad</label>
                     <select name="nivel_actividad" class="form-control">
-                        <option>Sedentario</option>
-                        <option>Moderado</option>
-                        <option>Activo</option>
+                        <option value="">Seleccione...</option>
+                        <option value="Sedentario">Sedentario</option>
+                        <option value="Moderado">Moderado</option>
+                        <option value="Activo">Activo</option>
                     </select>
                 </div>
-            </div>
 
-            <div class="row mt-2">
-                <div class="col-md-4">
-                    <label>Objetivo:</label>
+                <div class="col-md-6 mt-2">
+                    <label>Objetivo</label>
                     <select name="objetivo" class="form-control">
-                        <option>Aumentar masa muscular</option>
-                        <option>Perder grasa</option>
-                        <option>Tonificar</option>
-                        <option>Resistencia</option>
+                        <option value="">Seleccione...</option>
+                        <option value="Aumentar masa muscular">Aumentar masa muscular</option>
+                        <option value="Perder grasa">Perder grasa</option>
+                        <option value="Tonificar">Tonificar</option>
+                        <option value="Resistencia">Resistencia</option>
                     </select>
                 </div>
 
-                <div class="col-md-4">
-                    <label>Experiencia:</label>
+                <div class="col-md-6 mt-2">
+                    <label>Nivel de experiencia</label>
                     <select name="experiencia" class="form-control">
-                        <option>Principiante</option>
-                        <option>Intermedio</option>
-                        <option>Avanzado</option>
+                        <option value="">Seleccione...</option>
+                        <option value="Principiante">Principiante</option>
+                        <option value="Intermedio">Intermedio</option>
+                        <option value="Avanzado">Avanzado</option>
                     </select>
                 </div>
             </div>
 
-            <hr>
-
-            <h5 class="text-primary">Preferencias</h5>
-
+            <!-- DISPONIBILIDAD Y PREFERENCIAS -->
+            <h5 class="text-primary mt-4"><i class="fas fa-calendar-check"></i> Preferencias de Entrenamiento</h5>
             <div class="row">
-                <div class="col-md-4">
-                    <label>Días disponibles:</label>
+
+                <div class="col-md-6 mt-2">
+                    <label>Días disponibles por semana</label>
                     <input type="number" name="dias_disponibles" class="form-control">
                 </div>
 
-                <div class="col-md-4">
-                    <label>Minutos por día:</label>
+                <div class="col-md-6 mt-2">
+                    <label>Minutos por día</label>
                     <input type="number" name="minutos_por_dia" class="form-control">
                 </div>
 
-                <div class="col-md-4">
-                    <label>Grupo muscular preferido:</label>
-                    <input type="text" name="grupo_muscular" class="form-control">
-                </div>
-            </div>
-
-            <div class="row mt-2">
-                <div class="col-md-4">
-                    <label>Nivel de dificultad:</label>
-                    <select name="nivel_dificultad" class="form-control">
-                        <option>Fácil</option>
-                        <option>Intermedio</option>
-                        <option>Difícil</option>
+                <div class="col-md-6 mt-2">
+                    <label>Grupo muscular que quieres priorizar</label>
+                    <select name="grupo_muscular" class="form-control">
+                        <option value="">Seleccione...</option>
+                        <option>Pecho</option>
+                        <option>Espalda</option>
+                        <option>Piernas</option>
+                        <option>Hombros</option>
+                        <option>Bíceps</option>
+                        <option>Tríceps</option>
+                        <option>Abdomen</option>
                     </select>
                 </div>
+
+                <div class="col-md-6 mt-2">
+                    <label>Nivel de dificultad</label>
+                    <select name="nivel_dificultad" class="form-control">
+                        <option value="">Seleccione...</option>
+                        <option value="Principiante">Principiante</option>
+                        <option value="Intermedio">Intermedio</option>
+                        <option value="Avanzado">Avanzado</option>
+                    </select>
+                </div>
+
             </div>
 
-            <button class="btn btn-success mt-3">Recibir mi rutina IA</button>
+            <div class="text-center mt-4">
+                <button class="btn btn-success btn-lg">
+                    <i class="fas fa-paper-plane"></i> Recibir mi Rutina IA
+                </button>
+            </div>
 
         </form>
-
     </div>
 </div>
 

@@ -5,6 +5,10 @@
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
         <h1>Usuarios registrados</h1>
+
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-danger">
+        <i class="fas fa-arrow-left"></i> Regresar
+    </a>
     </div>
 @stop
 
