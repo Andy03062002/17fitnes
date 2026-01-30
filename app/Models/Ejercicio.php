@@ -18,8 +18,7 @@ class Ejercicio extends Model
         'video_corto',
     ];
 
-    /**
-     * Relación con detalles de rutina
-     */
+    
+
 
 }

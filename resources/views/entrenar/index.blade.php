@@ -35,12 +35,12 @@
                 <option value="Espalda">Espalda</option>
                 <option value="Hombros">Hombros</option>
                 <option value="Piernas">Piernas</option>
-                <option value="BÃ­ceps">Bíceps</option>
-                <option value="TrÃ­ceps">Tríceps</option>
-                <option value="glÃºteos">Glúteos</option>
+                <option value="Bíceps">Bíceps</option>
+                <option value="Tríceps">Tríceps</option>
+                <option value="Glúteos">Glúteos</option>
                 <option value="Abdominales">Abdomen</option>
                 <option value="Antebrazos">Antebrazos</option>
-                <option value="CuadrÃ­ceps">Cuadriceps</option>
+                <option value="Cuadriceps">Cuadriceps</option>
             </select>
         </div>
 
@@ -60,6 +60,10 @@
 
     <button type="submit" class="btn btn-primary btn-lg">
         Filtrar ejercicios
+    </button>
+
+    <button type="submit" class="btn btn-primary btn-lg">
+        busqueda avanzada
     </button>
 
 </form>

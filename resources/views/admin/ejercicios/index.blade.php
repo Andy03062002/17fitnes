@@ -37,7 +37,7 @@
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped">
+            <table id="ejerciciosTable" class="table table-bordered table-hover table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th>ID</th>
@@ -61,9 +61,9 @@
                                         </td>
                                         <td>
                                             <span class="badge badge-{{ 
-                                                        $ejercicio->nivel_dificultad == 'Principiante' ? 'success' :
+                                                                                                        $ejercicio->nivel_dificultad == 'Principiante' ? 'success' :
                         ($ejercicio->nivel_dificultad == 'Intermedio' ? 'warning' : 'danger') 
-                                                    }}">
+                                                                                                    }}">
                                                 {{ $ejercicio->nivel_dificultad }}
                                             </span>
                                         </td>
@@ -111,27 +111,77 @@
             </table>
         </div>
 
-        <!-- PAGINACIÓN - FORMA MÁS ROBUSTA -->
-        @if($ejercicios->hasPages())
-            <div class="row mt-4">
-                <div class="col-12">
-                    <nav aria-label="Page navigation">
-                        {{ $ejercicios->links('pagination::bootstrap-4') }}
-                    </nav>
-                </div>
-            </div>
-        @endif
     </div>
 </div>
 @stop
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.6/css/dataTables.dataTables.min.css">
+
+<style>
+    #ejerciciosTable thead th {
+        background-color: #343a40;
+        color: white;
+        font-weight: 600;
+    }
+
+    #ejerciciosTable tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.05);
+        transition: background-color 0.2s;
+    }
+
+    /* 🔍 Buscador bonito */
+    .dataTables_filter input {
+        border-radius: 20px;
+        padding: 6px 12px;
+        border: 1px solid #ced4da;
+        margin-left: 8px;
+    }
+
+    .dataTables_filter label {
+        font-weight: 600;
+    }
+</style>
+@stop
 
 @section('js')
+<script src="https://cdn.datatables.net/2.3.6/js/dataTables.min.js"></script>
+
 <script>
     $(document).ready(function () {
-        // Inicializar tooltips
+
+        $('#ejerciciosTable').DataTable({
+            language: {
+                search: "Buscar:",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ ejercicios",
+                zeroRecords: "No se encontraron ejercicios"
+            },
+            pageLength: 10,
+            lengthChange: false,
+            ordering: true,
+            order: [[0, "desc"]],
+            responsive: true,
+
+            // 🔥 MISMO LAYOUT QUE USUARIOS
+            dom:
+                '<"row mb-3"' +
+                '<"col-md-6 d-flex align-items-center"i>' +
+                '<"col-md-6 text-right"f>' +
+                '>' +
+                '<"row"<"col-12"tr>>' +
+                '<"row mt-3"' +
+                '<"col-md-6"i>' +
+                '<"col-md-6"p>' +
+                '>',
+
+            drawCallback: function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            }
+        });
+
+        // Tooltips
         $('[data-toggle="tooltip"]').tooltip();
 
-        // Auto-ocultar alertas después de 5 segundos
+        // Auto-ocultar alertas
         setTimeout(function () {
             $('.alert').alert('close');
         }, 5000);

@@ -9,8 +9,9 @@ class EjercicioController extends Controller
 {
     public function index()
     {
-        $ejercicios = Ejercicio::paginate(5);
-
+        $ejercicios = Ejercicio::all();
+        
+        
         return view('admin.ejercicios.index', compact('ejercicios'));
     }
 
