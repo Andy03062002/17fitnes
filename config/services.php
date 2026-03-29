@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'anthropic' => [
+        'url' => env('ANTHROPIC_API_URL'),
+        'key' => env('ANTHROPIC_API_KEY'),
+        
+    ],
+
+
 ];
